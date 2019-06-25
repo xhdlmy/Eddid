@@ -16,6 +16,11 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const platformTips = Platform.select({
+  android : "android shake or press menu button for dev menu to reload",
+  ios : "ios shake reload",
+});
+
 type Props = {};
 export default class App extends Component<Props> {
   render() {
