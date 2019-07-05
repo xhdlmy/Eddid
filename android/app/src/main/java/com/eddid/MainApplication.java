@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 
+import com.eddid.module.TencentMtaPackage;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -27,7 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(),
+          new TencentMtaPackage()
       );
     }
 
@@ -48,6 +50,10 @@ public class MainApplication extends Application implements ReactApplication {
   public static String sPackageName;
   public static String sChannelId;
 
+  public static Context getAppContext() {
+    return sContext;
+  }
+
   @Override
   public void onCreate() {
     super.onCreate();
@@ -60,8 +66,9 @@ public class MainApplication extends Application implements ReactApplication {
   private void initMta() {
     StatConfig.setDebugEnable(isApkInDebug(sContext));
     // 数据发送策略
-    StatConfig.setStatSendStrategy(StatReportStrategy.PERIOD);
-    StatConfig.setSendPeriodMinutes(5);
+//    StatConfig.setStatSendStrategy(StatReportStrategy.PERIOD);
+//    int MINUTES_ONE_HOUR = 60;
+//    StatConfig.setSendPeriodMinutes(MINUTES_ONE_HOUR);
     // TLink 推广功能
     StatConfig.setTLinkStatus(true);
     // 最好手动设置渠道
